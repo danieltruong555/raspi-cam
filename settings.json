@@ -1,0 +1,187 @@
+[
+    {
+        "title": "Basic",
+        "type": "title"
+    },
+    {
+        "title": "Resolution",
+        "type": "scrolloptions",
+        "key": "res",
+        "desc": "Sets the image resolution that the camera takes. Note that frame rate must be set to 15 to achieve maximum resolution.",
+        "section": "Camera",
+        "options": [
+            "320x240",
+            "640x480",
+            "1280x720",
+            "1640x922",
+            "1640x1232",
+            "1920x1080",
+            "3280x2464"
+        ]
+    },
+	{
+        "title": "Image File Format",
+        "type": "scrolloptions",
+        "key": "format",
+        "desc": "Choose which image file format to save as.",
+        "section": "Camera",
+        "options": [
+            "PNG",
+            "JPEG",
+            "TIFF"
+        ]
+    },
+    {
+        "title": "Framerate",
+        "type": "numeric",
+        "desc": "Adjusts the framerate of the camera. Default value is 30.",
+        "section": "Camera",
+        "key": "framerate"
+    },
+    {
+        "title": "Brightness",
+        "type": "numeric",
+        "desc": "Adjusts the brightness level of the camera. Default value is 50.",
+        "section": "Camera",
+        "key": "bright"
+    },
+    {
+        "title": "Contrast",
+        "type": "numeric",
+        "desc": "Adjusts the contrast level of the camera. Default value is 0.",
+        "section": "Camera",
+        "key": "contrast"
+    },
+	{
+        "title": "Saturation",
+        "type": "numeric",
+        "desc": "Adjusts the saturation level of the camera. Default value is 0.",
+        "section": "Camera",
+        "key": "saturation"
+    },
+	{
+        "title": "Sharpness",
+        "type": "numeric",
+        "desc": "Adjusts the sharpness level of the camera. Default value is 0.",
+        "section": "Camera",
+        "key": "sharp"
+    },
+    {
+        "title": "Exposure",
+        "type": "scrolloptions",
+        "key": "exposure",
+        "desc": "Sets the exposure to a particular mode. Default value is Auto.",
+        "section": "Camera",
+        "options": [
+            "Off",
+            "Auto",
+            "Night",
+            "NightPreview",
+            "Backlight",
+            "Spotlight",
+            "Sports",
+            "Snow",
+            "Beach",
+            "Verylong",
+            "FixedFPS",
+            "Anti-shake",
+            "Fireworks"
+        ]
+    },
+    {
+        "title": "Auto White Balance",
+        "type": "scrolloptions",
+        "key": "awb",
+        "desc": "Sets the auto white balance to a preset mode. Default value is Auto.",
+        "section": "Camera",
+        "options": [
+            "Off",
+            "Auto",
+            "Sunlight",
+            "Cloudy",
+            "Shade",
+            "Tungsten",
+            "Fluorescent",
+            "Incandescent",
+            "Flash",
+            "Horizon"
+        ]
+    },
+    {
+        "title": "LED",
+        "type": "bool",
+        "desc": "Turns on/off the camera's LED.",
+        "section": "Camera",
+        "key": "led"
+    },
+    {
+        "title": "Misc",
+        "type": "title"
+    },
+    {
+        "title": "Annotated Text",
+        "type": "bool",
+        "desc": "Turns on/off annotated text on captured images.",
+        "section": "Camera",
+        "key": "annotated"
+    },
+    {
+        "title": "Text",
+        "type": "string",
+        "key": "text",
+        "desc": "Text to be displayed on captured images.",
+        "section": "Camera",
+        "disabled": false
+    },
+    {
+        "title": "Text Size",
+        "type": "numeric",
+        "key": "text_size",
+        "desc": "Adjust the annotated text size on captured images. Default value is 32.",
+        "section": "Camera",
+        "disabled": false
+    },
+    {
+        "title": "Text Color",
+        "type": "scrolloptions",
+        "key": "text_color",
+        "desc": "Change the color of the annotated text on captured images. Default value is white.",
+        "section": "Camera",
+        "options": [
+            "black",
+            "white",
+            "red",
+            "green",
+            "blue",
+            "brown",
+            "grey",
+            "purple",
+            "pink",
+            "orange",
+            "yellow"
+        ],
+        "disabled": false
+    },
+    {
+        "title": "Background Color",
+        "type": "scrolloptions",
+        "key": "background_color",
+        "desc": "Change the color of the annotated text background on captured images. Default value is None.",
+        "section": "Camera",
+        "options": [
+            "None",
+            "black",
+            "white",
+            "red",
+            "green",
+            "blue",
+            "brown",
+            "grey",
+            "purple",
+            "pink",
+            "orange",
+            "yellow"
+        ],
+        "disabled": false
+    }
+]

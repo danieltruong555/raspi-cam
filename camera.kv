@@ -1,0 +1,170 @@
+#:import Factory kivy.factory.Factory
+
+<CustomButton@Button>:
+	size_hint: 0.05, 0.9
+	border: 0,0,0,0
+	#background_color: 0, 0, 0, 0
+	#background_down: self.background_normal
+	font_size: 30
+	color: 1, 1, 1, 1
+	
+<CustomImage@Image>:
+	pos: self.parent.pos
+	size: self.parent.size
+	allow_stretch: True
+	
+<CameraModeButton@Button>:
+	background_color: 0, 0, 0, 0
+	#color: (1, 1, 1, 1) if self.text == 'normal' else (1, 1, 0.2, 1)
+	font_size: 25
+	text_size: None, self.height
+	size_hint_x: None
+	width: self.texture_size[0]
+	#group: 'camera_mode'
+	on_press:
+		app.root.set_camera_mode(self)
+
+<TimerMenuButton@Button>
+	background_color: 0.1, 0.1, 0.1, 0.8
+	size_hint_y: None
+	height: 100
+	on_release: app.root.set_timer(self, self.text)
+	
+<TimerDropDown>:
+	id: timer_menu
+	TimerMenuButton:
+		id: timer_mode_off
+		background_color: 0, 1, 1, 0.75 
+		text: 'Off'
+	TimerMenuButton:
+		id: timer_mode_3s
+		text: '3s'
+	TimerMenuButton:
+		id: timer_mode_10s
+		text: '10s'
+		
+			
+<CameraScreenManager>:
+	Screen:
+		id: main_screen
+		GridLayout:
+			rows: 4
+			FloatLayout:
+				name: 'top'
+				size_hint: (1, 0.1)
+				canvas:
+					Color:
+						rgba: 0.2, 0.2, 0.2, 1
+					Rectangle:
+						pos:self.pos
+						size: self.size
+				CustomButton:
+					id: timerbtn
+					on_release: root.dropdown_open(self)
+					pos_hint: {'x': 0, 'top': 1}
+					background_normal: 'atlas://icons/camera_icons/timer'
+				CustomButton:
+					pos_hint: {'right': 1, 'top': 1}
+					on_press:
+						screen_manager.current = 'filter_screen' if screen_manager.current == 'cam_screen' else 'cam_screen'
+						screen_manager.transition.direction = 'down' if screen_manager.current == 'filter_screen' else 'up'
+					background_normal: 'atlas://icons/camera_icons/photo_filter'
+			
+			
+			ScreenManager:
+				name: 'main_display'
+				id: screen_manager
+				size_hint: (1, 0.7)
+				canvas:
+					Color:
+						rgba: 0, 0, 0, 1
+					Rectangle:
+						pos:self.pos
+						size: self.size
+				Screen:
+					name: 'cam_screen'
+					RelativeLayout:
+						pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+						id: camera_layer
+				Screen:
+					name: 'filter_screen'
+					BoxLayout:
+						orientation: 'horizontal'
+						BoxLayout:
+							size_hint_x: 0.1
+							CustomButton:
+								size_hint: 1,0.5
+								background_color: 0.2, 0.2, 0.2, 0.6
+								on_press: 
+									root.transitionFilterScreen('prev')
+								background_normal: 'atlas://icons/camera_icons/back'
+						ScreenManager:
+							size_hint_x: 0.8
+							name: 'filter_menu'
+							id: filter_manager
+									
+						BoxLayout:
+							size_hint_x: 0.1
+							CustomButton:
+								size_hint: 1,0.5
+								background_color: 0.2, 0.2, 0.2, 0.6
+								on_press: 
+									root.transitionFilterScreen('next')
+								background_normal: 'atlas://icons/camera_icons/forward'
+			FloatLayout:
+				name: 'bottom'
+				size_hint: (1, 0.15)
+				canvas:
+					Color:
+						rgba: 0.2, 0.2, 0.2, 1
+					Rectangle:
+						pos:self.pos
+						size: self.size
+				ScrollView:
+					name: 'camera_mode_menu'
+					do_scroll_y: False
+					pos_hint: {'y': (1-self.size_hint_y)}
+					size_hint_y: 0.3
+					bar_color: 1, 1, 1, 1
+					bar_inactive_color: 1, 1, 1, 0.2
+					bar_pos_x: 'top'
+					GridLayout:
+						id: camera_mode_gridlayout
+						rows: 1
+						size_hint_x: None
+						width: self.minimum_width
+						spacing: 300
+						padding: 100, 10
+						CameraModeButton:
+							id: camera_mode_photo
+							text: 'Photo'
+						CameraModeButton:
+							text: 'Video'
+						CameraModeButton:
+							text: 'Slow-mo'
+						CameraModeButton:
+							text: 'Panaroma'
+						CameraModeButton:
+							text: 'Timelapse'
+						CameraModeButton:
+							text: 'Square'
+				CustomButton:
+					size_hint_y: 0.7
+					pos_hint: {'x':0, 'y':0}
+					on_press:
+						root.display_gallery()
+					background_normal: 'atlas://icons/camera_icons/photo_library'
+				CustomButton:
+					size_hint_y: 0.7
+					pos_hint: {'right': 1, 'y':0}
+					on_press:
+						app.open_settings()
+					background_normal: 'icons/settings.png'
+				CustomButton:
+					size_hint_y: 0.7
+					pos_hint: {'center_x': 0.5, 'y': 0}
+					id: capture_btn
+					on_release:
+						root.capture()
+					background_normal: 'atlas://icons/camera_icons/button'
+		
